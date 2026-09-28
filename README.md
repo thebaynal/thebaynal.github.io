@@ -1,6 +1,15 @@
-# Developer Portfolio
+# Divino Al Ricafort — Portfolio
 
-A single-page React portfolio built with Vite and plain CSS. It has no application backend and is designed for GitHub Pages or Vercel.
+A responsive React portfolio featuring Divino’s cybersecurity journey, AI for impact work, and software projects. Built with Vite and plain CSS for GitHub Pages or Vercel.
+
+## Featured projects
+
+- [SAGIP](https://cdnc.heyzine.com/files/uploaded/v3/03b4ce1e96420277adac6202054478d413eebd9e.pdf) — Team INFRA’s AI-assisted storm damage assessment concept.
+- [UsTogether](https://github.com/thebaynal/UsTogether) — An interactive memory timeline built with React and Express.
+- [MaScan](https://github.com/thebaynal/QR-Attendance-Checker) — A team-built QR attendance checker using Python, Flet, and SQLite.
+- [Taglish Grammar Correction](https://github.com/thebaynal/taglish_grammar_correction) — A collaborative language AI project for Filipino-English text.
+
+The portfolio’s project cards link directly to these repositories and the SAGIP project story. Edit their content in `src/data/portfolio.js`.
 
 ## Requirements
 
@@ -40,10 +49,10 @@ The contact section currently points visitors to LinkedIn. Add a real address to
 
 ## Deploy to GitHub Pages
 
-1. Create a GitHub repository and push this project to its `main` branch.
+1. Push this project to the configured [`thebaynal/thebaynal.github.io`](https://github.com/thebaynal/thebaynal.github.io) repository on its `main` branch.
 2. In the repository, open **Settings → Pages** and choose **GitHub Actions** as the build and deployment source.
 3. The workflow in `.github/workflows/deploy.yml` builds the site on each push to `main` and publishes the `dist` folder. The Vite config uses relative asset paths so the site works from a repository subpath.
-4. Find the published address under **Settings → Pages** or in the workflow deployment details.
+4. The user site will be available at [thebaynal.github.io](https://thebaynal.github.io/) after the first successful deployment.
 
 ## Deploy to Vercel
 
