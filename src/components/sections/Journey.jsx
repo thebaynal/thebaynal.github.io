@@ -1,10 +1,10 @@
 export default function Journey({ journey }) {
   return (
     <section className="journey section-wrap" id="journey" aria-labelledby="journey-title">
-      <div className="section-kicker" data-reveal><span>05 / 06</span><span>A few chapters so far</span></div>
+      <div className="section-kicker" data-reveal><span>05 / 07</span><span>Education, competitions, and experience</span></div>
       <div className="section-heading-row journey__heading" data-reveal>
-        <h2 className="display-heading" id="journey-title">The long<br /><span>way <span className="accent-text">round.</span></span></h2>
-        <p className="section-heading-note">School, good people, happy accidents,<br />and the work that keeps me moving.</p>
+        <h2 className="display-heading" id="journey-title">Learning<br /><span>in <span className="accent-text">motion.</span></span></h2>
+        <p className="section-heading-note">Milestones from study, national competition,<br />and collaborative challenges.</p>
       </div>
       <div className="timeline">
         {journey.map((item) => (
@@ -21,7 +21,6 @@ export default function Journey({ journey }) {
           </article>
         ))}
       </div>
-      <div className="journey__aside" data-reveal><span aria-hidden="true">✳</span> Still writing the next chapter.</div>
     </section>
   )
 }

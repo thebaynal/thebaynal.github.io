@@ -8,6 +8,7 @@ import About from './components/sections/About.jsx'
 import Projects from './components/sections/Projects.jsx'
 import Skills from './components/sections/Skills.jsx'
 import Journey from './components/sections/Journey.jsx'
+import Certifications from './components/sections/Certifications.jsx'
 import Contact from './components/sections/Contact.jsx'
 
 function getInitialTheme() {
@@ -41,27 +42,45 @@ export default function App() {
       })
     }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' })
 
-    document.querySelectorAll('[data-reveal]').forEach((element) => observer.observe(element))
-    return () => observer.disconnect()
+    function observeReveals(node) {
+      if (!(node instanceof Element)) return
+      if (node.matches('[data-reveal]')) observer.observe(node)
+      node.querySelectorAll('[data-reveal]').forEach((element) => observer.observe(element))
+    }
+
+    const main = document.getElementById('main')
+    observeReveals(main)
+
+    const addedContent = new MutationObserver((records) => {
+      records.forEach((record) => record.addedNodes.forEach(observeReveals))
+    })
+    addedContent.observe(main, { childList: true, subtree: true })
+
+    return () => {
+      addedContent.disconnect()
+      observer.disconnect()
+    }
   }, [])
 
   return (
     <>
       <CursorMesh />
+      <div id="top" aria-hidden="true" />
       <a className="skip-link" href="#main">Skip to content</a>
       <SiteHeader name={portfolio.name} />
       <main id="main">
         <Hero profile={portfolio} />
+        <Skills groups={portfolio.skills} />
         <About about={portfolio.about} />
         <Projects projects={portfolio.projects} />
-        <Skills groups={portfolio.skills} />
         <Journey journey={portfolio.journey} />
+        <Certifications certifications={portfolio.certifications} />
         <Contact contact={portfolio.contact} email={portfolio.email} socialLinks={portfolio.socialLinks} />
       </main>
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} {portfolio.name}</span>
         <span>Designed with curiosity <span aria-hidden="true">✳</span> Built with care</span>
-        <a href="#top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Back to top ↑</a>
+        <a href="#top">Back to top ↑</a>
       </footer>
       <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
     </>

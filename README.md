@@ -1,15 +1,28 @@
 # Divino Al Ricafort — Portfolio
 
-A responsive React portfolio featuring Divino’s cybersecurity journey, AI for impact work, and software projects. Built with Vite and plain CSS for GitHub Pages or Vercel.
+A responsive React portfolio featuring Divino’s cybersecurity journey, AI work, and software projects. Built with Vite and plain CSS for GitHub Pages or Vercel.
+
+## Structure
+
+```text
+public/             Portrait and favicon
+src/components/     Sections and shared controls
+src/data/portfolio.js  Editable portfolio content
+src/styles/         Color tokens, layouts, and motion
+.github/workflows/  GitHub Pages deployment
+```
+
+The portrait-led hero uses a copper and charcoal palette drawn from the local photo. A compact technology index moves horizontally, the project cards use custom diagrams, and the About section includes a small interactive project-detail button. Motion respects the visitor’s reduced-motion setting.
 
 ## Featured projects
 
-- [SAGIP](https://cdnc.heyzine.com/files/uploaded/v3/03b4ce1e96420277adac6202054478d413eebd9e.pdf) — Team INFRA’s AI-assisted storm damage assessment concept.
 - [UsTogether](https://github.com/thebaynal/UsTogether) — An interactive memory timeline built with React and Express.
 - [MaScan](https://github.com/thebaynal/QR-Attendance-Checker) — A team-built QR attendance checker using Python, Flet, and SQLite.
 - [Taglish Grammar Correction](https://github.com/thebaynal/taglish_grammar_correction) — A collaborative language AI project for Filipino-English text.
+- [3D Image Projection](https://github.com/thebaynal/3D-Image-Projection-Using-Linear-Algebra) — An interactive Python visualizer for 3D transformations and projection.
+- [Lexical Analyzer Visualizer](https://github.com/thebaynal/LexicalAnalyzerVisualizer) — A React and Flex dashboard for exploring lexical analysis of C code.
 
-The portfolio’s project cards link directly to these repositories and the SAGIP project story. Edit their content in `src/data/portfolio.js`.
+The project cards link directly to these repositories. Edit their content in `src/data/portfolio.js`.
 
 ## Requirements
 
@@ -32,20 +45,23 @@ npm run preview
 
 ## Personalize the portfolio
 
-1. Edit `src/data/portfolio.js` to refine the biography, social profiles, projects, skills, education, experience, and achievements.
+1. Edit `src/data/portfolio.js` to refine the biography, social profiles, projects, skills, education, experience, achievements, and certifications.
 2. The hero uses `public/images/divinoalricafort.png`. To change it, replace that image or update the path in `src/components/sections/Hero.jsx`. Use a portrait crop with the subject centered.
 3. Add project demo and repository links when you have them. Cards without links do not display inactive buttons.
 4. Adjust colors and typography in `src/styles/tokens.css`; layout and responsive rules are in `src/styles/global.css`.
 5. Change the page title and description in `index.html`.
+
+The stack immediately after the hero reflects tools used in the linked repositories. PyTorch, Transformers, and PEFT appear in the [Taglish project dependency file](https://github.com/thebaynal/taglish_grammar_correction/blob/main/taglish_gec_project/requirements.txt). The horizontal movement is defined in `src/styles/skills.css`.
 
 The contact section currently points visitors to LinkedIn. Add a real address to the `email` value in `portfolio.js` to show the email copy button and form. The form opens the visitor’s email application with its fields prefilled; it does not send messages through a server.
 
 ## Profile sources
 
 - The [CSPC College of Computer Studies report](https://ccs.cspc.edu.ph/2025/08/20/day2aideas2025hackathon/) confirms Divino Al Ricafort’s BS Computer Science studies, Team INFRA membership, and the team’s third-place finish at AI.DEAS for Impact 2025.
-- [The SPARK campus publication (page 4)](https://cdnc.heyzine.com/files/uploaded/v3/03b4ce1e96420277adac6202054478d413eebd9e.pdf) describes Team INFRA’s SAGIP concept.
-- The featured repositories are [UsTogether](https://github.com/thebaynal/UsTogether), [MaScan](https://github.com/thebaynal/QR-Attendance-Checker), and [Taglish Grammar Correction](https://github.com/thebaynal/taglish_grammar_correction). Their READMEs document the features and technologies shown on the site.
+- The featured repositories are linked above. Their READMEs document the features and technologies shown on the site.
+- The [Taglish model dependencies](https://github.com/thebaynal/taglish_grammar_correction/blob/main/taglish_gec_project/requirements.txt) document PyTorch, Transformers, and PEFT used in the model workflow.
 - The WorldSkills Philippines and Philippine Startup Challenge entries come from Divino’s own details provided for this portfolio.
+- The four completed course certificates and issue dates were transcribed from Divino’s LinkedIn screenshot. The overall Google Cybersecurity Certificate and Cisco Ethical Hacking are marked in progress based on Divino’s own updates.
 
 ## Deploy to GitHub Pages
 

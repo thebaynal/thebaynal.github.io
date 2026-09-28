@@ -2,7 +2,7 @@ export default function Hero({ profile }) {
   return (
     <section className="hero page-shell" aria-labelledby="hero-title">
       <div className="hero__meta">
-        <span className="eyebrow"><span className="eyebrow__index">01 / 06</span> {profile.role}</span>
+        <span className="eyebrow"><span className="eyebrow__index">01 / 07</span> {profile.role}</span>
         <span className="hero__location">{profile.location}</span>
       </div>
       <div className="hero__stage">
@@ -32,7 +32,7 @@ export default function Hero({ profile }) {
           <a className="button button--dark" href="#work">View work <span aria-hidden="true">↘</span></a>
           <a className="button button--outline" href="#contact">Contact me <span aria-hidden="true">↗</span></a>
         </div>
-        <a className="scroll-cue" href="#about"><span className="scroll-cue__line" />Scroll to explore</a>
+        <a className="scroll-cue" href="#skills"><span className="scroll-cue__line" />Explore my stack</a>
       </div>
     </section>
   )

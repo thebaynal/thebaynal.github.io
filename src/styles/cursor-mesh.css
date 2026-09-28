@@ -1,9 +1,11 @@
 :root {
   --cursor-mesh-ink: #f1f1f1;
+  --cursor-mesh-line-opacity: 0.31;
 }
 
 :root[data-theme='light'] {
-  --cursor-mesh-ink: #151515;
+  --cursor-mesh-ink: #191919;
+  --cursor-mesh-line-opacity: 0.23;
 }
 
 .cursor-mesh {

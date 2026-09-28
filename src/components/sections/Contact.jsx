@@ -27,7 +27,7 @@ export default function Contact({ contact, email, socialLinks }) {
 
   return (
     <section className="contact section-wrap" id="contact" aria-labelledby="contact-title">
-      <div className="section-kicker" data-reveal><span>06 / 06</span><span>{contact.eyebrow}</span></div>
+      <div className="section-kicker" data-reveal><span>07 / 07</span><span>{contact.eyebrow}</span></div>
       <div className="contact__grid">
         <div className="contact__copy" data-reveal>
           <h2 className="display-heading" id="contact-title">{contact.title.split('\n').map((line) => <span key={line}>{line}</span>)}</h2>
@@ -41,7 +41,7 @@ export default function Contact({ contact, email, socialLinks }) {
             </>
           )}
           <div className="contact__socials">
-            <span>ELSEWHERE ON THE INTERNET</span>
+            <span>FIND ME ONLINE</span>
             {socialLinks.map((social) => <a href={social.href} key={social.label} target="_blank" rel="noopener noreferrer">{social.label} <span aria-hidden="true">↗</span></a>)}
           </div>
         </div>
@@ -60,8 +60,8 @@ export default function Contact({ contact, email, socialLinks }) {
         ) : (
           <div className="contact-form contact-form--social" data-reveal style={{ '--reveal-delay': '100ms' }}>
             <p className="contact-form__eyebrow">START A CONVERSATION</p>
-            <h3>Have an idea? Let’s talk.</h3>
-            <p>Send me a message on LinkedIn about a project, collaboration, or opportunity.</p>
+            <h3>Let’s connect.</h3>
+            <p>Reach me on LinkedIn to discuss a project, collaboration, or opportunity.</p>
             <a className="button button--dark contact-form__submit" href={linkedIn.href} target="_blank" rel="noopener noreferrer">Message on LinkedIn <span aria-hidden="true">↗</span></a>
           </div>
         )}
