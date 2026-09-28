@@ -1,0 +1,59 @@
+# Developer Portfolio
+
+A single-page React portfolio built with Vite and plain CSS. It has no application backend and is designed for GitHub Pages or Vercel.
+
+## Requirements
+
+- Node.js 22.12 or newer
+- npm
+
+## Run locally
+
+```sh
+npm ci
+npm run dev
+```
+
+Open the local URL printed by Vite. To check the production version locally:
+
+```sh
+npm run build
+npm run preview
+```
+
+## Personalize the portfolio
+
+1. Edit `src/data/portfolio.js` to refine the biography, social profiles, projects, skills, education, experience, and achievements.
+2. The hero uses `public/images/divinoalricafort.png`. To change it, replace that image or update the path in `src/components/sections/Hero.jsx`. Use a portrait crop with the subject centered.
+3. Add project demo and repository links when you have them. Cards without links do not display inactive buttons.
+4. Adjust colors and typography in `src/styles/tokens.css`; layout and responsive rules are in `src/styles/global.css`.
+5. Change the page title and description in `index.html`.
+
+The contact section currently points visitors to LinkedIn. Add a real address to the `email` value in `portfolio.js` to show the email copy button and form. The form opens the visitor’s email application with its fields prefilled; it does not send messages through a server.
+
+## Profile sources
+
+- The [CSPC College of Computer Studies report](https://ccs.cspc.edu.ph/2025/08/20/day2aideas2025hackathon/) confirms Divino Al Ricafort’s BS Computer Science studies, Team INFRA membership, and the team’s third-place finish at AI.DEAS for Impact 2025.
+- [The SPARK campus publication (page 4)](https://cdnc.heyzine.com/files/uploaded/v3/03b4ce1e96420277adac6202054478d413eebd9e.pdf) describes Team INFRA’s SAGIP concept.
+- The featured repositories are [UsTogether](https://github.com/thebaynal/UsTogether), [MaScan](https://github.com/thebaynal/QR-Attendance-Checker), and [Taglish Grammar Correction](https://github.com/thebaynal/taglish_grammar_correction). Their READMEs document the features and technologies shown on the site.
+- The WorldSkills Philippines and Philippine Startup Challenge entries come from Divino’s own details provided for this portfolio.
+
+## Deploy to GitHub Pages
+
+1. Create a GitHub repository and push this project to its `main` branch.
+2. In the repository, open **Settings → Pages** and choose **GitHub Actions** as the build and deployment source.
+3. The workflow in `.github/workflows/deploy.yml` builds the site on each push to `main` and publishes the `dist` folder. The Vite config uses relative asset paths so the site works from a repository subpath.
+4. Find the published address under **Settings → Pages** or in the workflow deployment details.
+
+## Deploy to Vercel
+
+1. Import the GitHub repository in Vercel.
+2. Select the Vite framework preset. The default build command is `npm run build` and the output directory is `dist`.
+3. Deploy. Vercel will rebuild when you push changes to the connected branch.
+
+## Security and maintenance
+
+- The app uses React, React DOM, Vite, and the official Vite React plugin. There are no form-processing services, UI libraries, analytics scripts, or remote font requests.
+- Commit `package-lock.json` and use `npm ci` for repeatable installs.
+- Review dependency advisories periodically with `npm audit`. Update dependencies deliberately, review the lockfile diff, then rebuild before publishing.
+- External profile and project links open with `noopener noreferrer`.

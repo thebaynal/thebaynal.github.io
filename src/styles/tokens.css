@@ -1,0 +1,35 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color-scheme: dark;
+  --ink: #f6f1e8;
+  --ink-muted: #b2aea5;
+  --ink-soft: #817d75;
+  --paper: #11110f;
+  --paper-raised: #181816;
+  --line: rgba(246, 241, 232, .17);
+  --line-strong: rgba(246, 241, 232, .36);
+  --accent: #d2ff3e;
+  --accent-ink: #17180f;
+  --accent-pink: #ff8fbd;
+  --accent-blue: #99b8ff;
+  --display: 'Trebuchet MS', 'Avenir Next', Arial, sans-serif;
+  --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --page-width: 1320px;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --ease: cubic-bezier(.2, .75, .25, 1);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --ink: #181815;
+  --ink-muted: #56564f;
+  --ink-soft: #77776e;
+  --paper: #f5f2eb;
+  --paper-raised: #ebe7dd;
+  --line: rgba(24, 24, 21, .17);
+  --line-strong: rgba(24, 24, 21, .34);
+  --accent: #8bc20b;
+  --accent-ink: #14170c;
+  --accent-pink: #d94e84;
+  --accent-blue: #4565bd;
+}
