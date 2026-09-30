@@ -125,7 +125,7 @@ export const portfolio = {
     { title: 'Foundations of Cybersecurity', issuer: 'Google', date: 'Apr 2026', status: 'completed' },
     { title: 'Foundations: Data, Data, Everywhere', issuer: 'Google', date: 'Jan 2026', status: 'completed' },
     { title: 'Google Cybersecurity Certificate', issuer: 'Google', date: '', status: 'in-progress' },
-    { title: 'Ethical Hacking', issuer: 'Cisco', date: '', status: 'in-progress' },
+    { title: 'Ethical Hacking', issuer: 'Cisco', date: 'Sep 2026', status: 'completed' },
   ],
   contact: {
     eyebrow: 'Get in touch',

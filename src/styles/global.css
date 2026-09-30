@@ -42,8 +42,8 @@ button { color: inherit; }
 .hero__headline-line--3 { margin-left: .34em; color: var(--ink); }
 .hero__portrait { position: relative; z-index: 1; width: 100%; aspect-ratio: .82; max-height: 530px; overflow: hidden; border: 1px solid var(--line-strong); background: #211e1b; }
 .hero__portrait::after { position: absolute; inset: 55% 0 0; content: ''; background: linear-gradient(transparent, rgba(0, 0, 0, .58)); pointer-events: none; }
-.hero__portrait > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: saturate(1.02) contrast(1.02); transform: scale(1.13); transition: transform .6s var(--ease), filter .45s ease; }
-.hero__portrait:hover > img { filter: saturate(1.07) contrast(1.02); transform: scale(1.16); }
+.hero__portrait > img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; filter: saturate(1.02) contrast(1.02); transform: scale(1.035); transition: transform .6s var(--ease), filter .45s ease; }
+.hero__portrait:hover > img { filter: saturate(1.07) contrast(1.02); transform: scale(1.06); }
 .hero__portrait-index { position: absolute; z-index: 1; bottom: 1rem; left: 1rem; color: #f6f1e8; font-family: var(--mono); font-size: .53rem; letter-spacing: .1em; }
 @keyframes hero-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes portrait-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
