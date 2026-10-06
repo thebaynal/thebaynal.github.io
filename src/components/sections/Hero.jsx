@@ -1,5 +1,3 @@
-import HeroSculpture from '../ui/HeroSculpture.jsx'
-
 export default function Hero({ profile }) {
   const nameParts = profile.name.trim().split(/\s+/)
   const firstNames = nameParts.slice(0, -1).join(' ')
@@ -21,10 +19,9 @@ export default function Hero({ profile }) {
           </div>
         </div>
         <div className="hero__visual">
-          <HeroSculpture />
           <figure className="hero__portrait">
-            <img src="./images/divinoalricafort.png" alt={`${profile.name} speaking at an event`} />
-            <figcaption>Camarines Sur, Philippines<br /><span>Computer science, in practice.</span></figcaption>
+            <img src="./images/divinoalricafort.png" width="1254" height="1254" fetchPriority="high" alt={`${profile.name} speaking at an event`} />
+            <figcaption><span>Camarines Sur, Philippines</span><span>Computer science, in practice.</span></figcaption>
           </figure>
         </div>
       </div>
