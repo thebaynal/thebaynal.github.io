@@ -1,33 +1,33 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
-  color-scheme: dark;
-  --ink: #f7efe8;
-  --ink-muted: #c3b2a5;
-  --ink-soft: #a88f80;
-  --paper: #14110f;
-  --paper-raised: #211a16;
-  --line: rgba(247, 239, 232, .17);
-  --line-strong: rgba(247, 239, 232, .35);
-  --accent: #f5a46d;
-  --button-accent: var(--accent);
-  --accent-ink: #27160d;
-  --display: 'Trebuchet MS', 'Avenir Next', Arial, sans-serif;
-  --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
-  --page-width: 1320px;
-  --gutter: clamp(1.25rem, 5vw, 5rem);
+  color-scheme: light;
+  --ink: #1b2428;
+  --ink-muted: #505956;
+  --ink-soft: #5d6561;
+  --paper: #f4f0e6;
+  --paper-raised: #fffcf4;
+  --line: #c9c8bb;
+  --line-strong: #1b2428;
+  --accent: #244fd1;
+  --button-accent: #2959e8;
+  --accent-ink: #ffffff;
+  --orange: #fa6e40;
+  --yellow: #f8ce46;
+  --display: 'Arial Black', 'Segoe UI', Arial, sans-serif;
+  --mono: 'Cascadia Code', Consolas, 'Liberation Mono', monospace;
+  --page-width: 1240px;
+  --gutter: clamp(1.15rem, 5vw, 5rem);
   --ease: cubic-bezier(.2, .75, .25, 1);
 }
-
-:root[data-theme='light'] {
-  color-scheme: light;
-  --ink: #271b15;
-  --ink-muted: #5d4b42;
-  --ink-soft: #6b574b;
-  --paper: #f5eee7;
-  --paper-raised: #eae0d6;
-  --line: rgba(39, 27, 21, .18);
-  --line-strong: rgba(39, 27, 21, .35);
-  --accent: #974018;
-  --button-accent: #e68a4d;
-  --accent-ink: #27160d;
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ink: #f4f0e6;
+  --ink-muted: #cbcbbc;
+  --ink-soft: #afb5aa;
+  --paper: #1b2428;
+  --paper-raised: #263136;
+  --line: #566364;
+  --line-strong: #f4f0e6;
+  --accent: #aabfff;
+  --button-accent: #2959e8;
 }

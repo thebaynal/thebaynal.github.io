@@ -27,10 +27,10 @@ export default function Contact({ contact, email, socialLinks }) {
 
   return (
     <section className="contact section-wrap" id="contact" aria-labelledby="contact-title">
-      <div className="section-kicker" data-reveal><span>07 / 07</span><span>{contact.eyebrow}</span></div>
+      <p className="section-label" data-reveal>{contact.eyebrow}</p>
       <div className="contact__grid">
         <div className="contact__copy" data-reveal>
-          <h2 className="display-heading" id="contact-title">{contact.title.split('\n').map((line) => <span key={line}>{line}</span>)}</h2>
+          <h2 className="display-heading" id="contact-title">Have a project<br />in mind?</h2>
           <p>{contact.description}</p>
           {email && (
             <>
@@ -66,7 +66,6 @@ export default function Contact({ contact, email, socialLinks }) {
           </div>
         )}
       </div>
-      <div className="contact__endmark" data-reveal aria-hidden="true">✳</div>
     </section>
   )
 }

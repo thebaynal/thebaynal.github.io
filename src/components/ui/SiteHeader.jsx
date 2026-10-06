@@ -1,11 +1,8 @@
 import { useState } from 'react'
 
 const navItems = [
-  { label: 'Stack', href: '#skills' },
+  { label: 'Projects', href: '#work' },
   { label: 'About', href: '#about' },
-  { label: 'Work', href: '#work' },
-  { label: 'Journey', href: '#journey' },
-  { label: 'Credentials', href: '#certifications' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -15,8 +12,8 @@ export default function SiteHeader({ name }) {
   return (
     <header className="site-header">
       <a className="wordmark" href="#top" aria-label={`${name}, home`}>
-        <span className="wordmark__mark">✳</span>
-        <span>{name.split(' ')[0]}<span className="wordmark__period">.</span></span>
+        <span className="wordmark__mark" aria-hidden="true">d/r</span>
+        <span>{name.split(' ')[0]}</span>
       </a>
       <button
         className="menu-toggle"
@@ -34,9 +31,8 @@ export default function SiteHeader({ name }) {
           <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
         ))}
       </nav>
-      <a className="header-availability" href="#contact">
-        <span className="availability-dot" aria-hidden="true" />
-        <span>Let’s connect</span>
+      <a className="header-availability" href="https://github.com/thebaynal" target="_blank" rel="noopener noreferrer">
+        <span>GitHub ↗</span>
       </a>
     </header>
   )

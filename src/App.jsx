@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { portfolio } from './data/portfolio.js'
 import SiteHeader from './components/ui/SiteHeader.jsx'
 import ThemeToggle from './components/ui/ThemeToggle.jsx'
-import CursorMesh from './components/ui/CursorMesh.jsx'
 import Hero from './components/sections/Hero.jsx'
 import About from './components/sections/About.jsx'
 import Projects from './components/sections/Projects.jsx'
@@ -13,9 +12,10 @@ import Contact from './components/sections/Contact.jsx'
 
 function getInitialTheme() {
   try {
-    return localStorage.getItem('portfolio-theme') || 'dark'
+    const saved = localStorage.getItem('portfolio-theme')
+    return saved === 'dark' ? 'dark' : 'light'
   } catch {
-    return 'dark'
+    return 'light'
   }
 }
 
@@ -24,6 +24,7 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#1b2428' : '#f4f0e6')
     try {
       localStorage.setItem('portfolio-theme', theme)
     } catch {
@@ -64,22 +65,21 @@ export default function App() {
 
   return (
     <>
-      <CursorMesh />
       <div id="top" aria-hidden="true" />
       <a className="skip-link" href="#main">Skip to content</a>
       <SiteHeader name={portfolio.name} />
       <main id="main">
         <Hero profile={portfolio} />
-        <Skills groups={portfolio.skills} />
-        <About about={portfolio.about} />
         <Projects projects={portfolio.projects} />
+        <About about={portfolio.about} />
+        <Skills groups={portfolio.skills} />
         <Journey journey={portfolio.journey} />
         <Certifications certifications={portfolio.certifications} />
         <Contact contact={portfolio.contact} email={portfolio.email} socialLinks={portfolio.socialLinks} />
       </main>
       <footer className="site-footer">
         <span>© {new Date().getFullYear()} {portfolio.name}</span>
-        <span>Designed with curiosity <span aria-hidden="true">✳</span> Built with care</span>
+        <a href="https://github.com/thebaynal/thebaynal.github.io" target="_blank" rel="noopener noreferrer">Built with React. Source on GitHub ↗</a>
         <a href="#top">Back to top ↑</a>
       </footer>
       <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />

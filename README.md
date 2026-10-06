@@ -1,84 +1,59 @@
 # Divino Al Ricafort — Portfolio
 
-A responsive React portfolio featuring Divino’s cybersecurity journey, AI work, and software projects. Built with Vite and plain CSS for GitHub Pages or Vercel.
+A React and Vite portfolio with a graphic cream-and-ink design, live public GitHub projects, and draggable project blocks powered by Matter.js. The project scene is the only physics area; the biography, skills, experience, and credentials stay readable.
 
-## Structure
+## Run and preview
 
-```text
-public/             Portrait and favicon
-src/components/     Sections and shared controls
-src/data/portfolio.js  Editable portfolio content
-src/styles/         Color tokens, layouts, and motion
-.github/workflows/  GitHub Pages deployment
-```
-
-The portrait-led hero uses a copper and charcoal palette drawn from the local photo. A compact technology index moves horizontally, the project cards use custom diagrams, and the About section includes a small interactive project-detail button. Motion respects the visitor’s reduced-motion setting.
-
-## Featured projects
-
-- [UsTogether](https://github.com/thebaynal/UsTogether) — An interactive memory timeline built with React and Express.
-- [MaScan](https://github.com/thebaynal/QR-Attendance-Checker) — A team-built QR attendance checker using Python, Flet, and SQLite.
-- [Taglish Grammar Correction](https://github.com/thebaynal/taglish_grammar_correction) — A collaborative language AI project for Filipino-English text.
-- [3D Image Projection](https://github.com/thebaynal/3D-Image-Projection-Using-Linear-Algebra) — An interactive Python visualizer for 3D transformations and projection.
-- [Lexical Analyzer Visualizer](https://github.com/thebaynal/LexicalAnalyzerVisualizer) — A React and Flex dashboard for exploring lexical analysis of C code.
-
-The project cards link directly to these repositories. Edit their content in `src/data/portfolio.js`.
-
-## Requirements
-
-- Node.js 22.12 or newer
-- npm
-
-## Run locally
+Requires Node.js 22.12 or newer.
 
 ```sh
 npm ci
 npm run dev
-```
-
-Open the local URL printed by Vite. To check the production version locally:
-
-```sh
 npm run build
 npm run preview
 ```
 
-## Personalize the portfolio
+The production build goes to `dist/`. The existing GitHub Pages workflow deploys on pushes to `main`; this revision does not publish automatically from the local workspace. Relative Vite asset paths support GitHub Pages repository subpaths.
 
-1. Edit `src/data/portfolio.js` to refine the biography, social profiles, projects, skills, education, experience, achievements, and certifications.
-2. The hero uses `public/images/divinoalricafort.png`. To change it, replace that image or update the path in `src/components/sections/Hero.jsx`. Use a portrait crop with the subject centered.
-3. Add project demo and repository links when you have them. Cards without links do not display inactive buttons.
-4. Adjust colors and typography in `src/styles/tokens.css`; layout and responsive rules are in `src/styles/global.css`.
-5. Change the page title and description in `index.html`.
+## Project playground
 
-The stack immediately after the hero reflects tools used in the linked repositories. PyTorch, Transformers, and PEFT appear in the [Taglish project dependency file](https://github.com/thebaynal/taglish_grammar_correction/blob/main/taglish_gec_project/requirements.txt). The horizontal movement is defined in `src/styles/skills.css`.
+Blocks fall into a bounded scene, collide, and stack. Drag a whole block with a mouse or its dotted grip on a touch screen. Click, tap, Enter, or Space opens the same project details. Search covers the entire loaded collection; the playground shows eight results per page, while List view displays all matches.
 
-The contact section currently points visitors to LinkedIn. Add a real address to the `email` value in `portfolio.js` to show the email copy button and form. The form opens the visitor’s email application with its fields prefilled; it does not send messages through a server.
+Reset restores the arrangement. Pause stops motion. Movement controls offer a tap/keyboard alternative to dragging. Physics pauses when the scene is offscreen, the browser tab is hidden, or details are open. Reduced-motion preferences default to List view. Mobile scrolling remains available outside the drag grips.
 
-## Profile sources
+## GitHub connection
 
-- The [CSPC College of Computer Studies report](https://ccs.cspc.edu.ph/2025/08/20/day2aideas2025hackathon/) confirms Divino Al Ricafort’s BS Computer Science studies, Team INFRA membership, and the team’s third-place finish at AI.DEAS for Impact 2025.
-- The featured repositories are linked above. Their READMEs document the features and technologies shown on the site.
-- The [Taglish model dependencies](https://github.com/thebaynal/taglish_grammar_correction/blob/main/taglish_gec_project/requirements.txt) document PyTorch, Transformers, and PEFT used in the model workflow.
-- The WorldSkills Philippines and Philippine Startup Challenge entries come from Divino’s own details provided for this portfolio.
-- The four completed course certificates and issue dates were transcribed from Divino’s LinkedIn screenshot. The overall Google Cybersecurity Certificate and Cisco Ethical Hacking are marked in progress based on Divino’s own updates.
+The portfolio reads all public repositories belonging to `thebaynal`, including forks and archived repositories, using the public GitHub REST API. No account sign-in, browser token, or backend is required. It fetches every page before publishing a refreshed collection; no extra request is made per repository.
 
-## Deploy to GitHub Pages
+A complete collection is cached locally for one hour, with stale data refreshed in the background. Manual refresh has a 60-second cooldown. Failed or rate-limited requests retain the last complete collection; if none exists, the five authored projects stay usable. A successful empty collection shows an empty state. New public repositories appear after the next successful refresh.
 
-1. Push this project to the configured [`thebaynal/thebaynal.github.io`](https://github.com/thebaynal/thebaynal.github.io) repository on its `main` branch.
-2. In the repository, open **Settings → Pages** and choose **GitHub Actions** as the build and deployment source.
-3. The workflow in `.github/workflows/deploy.yml` builds the site on each push to `main` and publishes the `dist` folder. The Vite config uses relative asset paths so the site works from a repository subpath.
-4. The user site will be available at [thebaynal.github.io](https://thebaynal.github.io/) after the first successful deployment.
+GitHub requests are subject to its public API limits, so a successful refresh is required to discover changes. Cached data and authored fallback projects are explicitly identified in the interface.
 
-## Deploy to Vercel
+## Edit your content
 
-1. Import the GitHub repository in Vercel.
-2. Select the Vite framework preset. The default build command is `npm run build` and the output directory is `dist`.
-3. Deploy. Vercel will rebuild when you push changes to the connected branch.
+- `src/data/portfolio.js`: biography, socials, skills, milestones, credentials, and project notes. Project notes match live repositories using `fullName` (for example, `thebaynal/UsTogether`).
+- Each authored project includes `overview`, `features`, `stack`, and `skillsDeveloped`. These are editorial notes grounded in documented project functionality. Review or refine them to reflect your individual contributions, especially team projects.
+- Repositories without authored notes show GitHub descriptions and primary language; they explicitly state that full stack and personal learning notes are unavailable.
+- `src/styles/tokens.css`: theme colors and typography. `global.css` handles page layout; `projects.css` handles the scene, blocks, list, and dialog.
+- `public/images/divinoalricafort.png`: existing portrait. `index.html`: page title and description.
+- Add a real email address in the data file to enable the existing email draft/copy controls. Otherwise contact links point to LinkedIn and GitHub.
 
-## Security and maintenance
+## Browser checks
 
-- The app uses React, React DOM, Vite, and the official Vite React plugin. There are no form-processing services, UI libraries, analytics scripts, or remote font requests.
-- Commit `package-lock.json` and use `npm ci` for repeatable installs.
-- Review dependency advisories periodically with `npm audit`. Update dependencies deliberately, review the lockfile diff, then rebuild before publishing.
-- External profile and project links open with `noopener noreferrer`.
+```sh
+npx playwright install chromium
+npm test
+```
+
+If Chrome or Edge is already installed, use it instead of downloading Chromium:
+
+```powershell
+$env:PLAYWRIGHT_CHANNEL = 'chrome' # or 'msedge'
+npm test
+```
+
+Tests mock GitHub and cover multi-page discovery, cache preservation on failure, empty results, disabled storage, details and focus, drag-versus-click, stacking, reduced motion, responsive bounds, and collection updates during interaction. Test output is ignored by Git.
+
+## Content sources
+
+The five authored projects retain the repository links and documented technologies from the original portfolio: UsTogether, MaScan, Taglish Grammar Correction, 3D Image Projection, and Lexical Analyzer Visualizer. [The CSPC report](https://ccs.cspc.edu.ph/2025/08/20/day2aideas2025hackathon/) supports the education and Team INFRA achievement entries. WorldSkills and Philippine Startup Challenge details were supplied by Divino. Certificate records preserve the supplied titles, issuers, dates, and completion statuses.

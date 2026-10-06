@@ -1,17 +1,17 @@
 export default function Journey({ journey }) {
   return (
     <section className="journey section-wrap" id="journey" aria-labelledby="journey-title">
-      <div className="section-kicker" data-reveal><span>05 / 07</span><span>Education, competitions, and experience</span></div>
+      <p className="section-label" data-reveal>Education &amp; experience</p>
       <div className="section-heading-row journey__heading" data-reveal>
-        <h2 className="display-heading" id="journey-title">Learning<br /><span>in <span className="accent-text">motion.</span></span></h2>
+        <h2 className="display-heading" id="journey-title">Along the way.</h2>
         <p className="section-heading-note">Milestones from study, national competition,<br />and collaborative challenges.</p>
       </div>
       <div className="timeline">
         {journey.map((item) => (
           <article className="timeline-item" key={`${item.year}-${item.title}`} data-reveal>
-            <div className="timeline-item__marker"><span>{item.mark}</span><i aria-hidden="true" /></div>
+            <div className="timeline-item__marker">{item.year || '—'}</div>
             <div className="timeline-item__main">
-              <div className="timeline-item__label"><span>{item.type}</span>{item.year && <span>{item.year}</span>}</div>
+              <div className="timeline-item__label">{item.type}</div>
               <h3>{item.title}</h3>
               <p className="timeline-item__place">{item.place}</p>
               <p className="timeline-item__detail">{item.detail}</p>
