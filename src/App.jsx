@@ -24,7 +24,7 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#1b2428' : '#f4f0e6')
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#181d1a' : '#ffffff')
     try {
       localStorage.setItem('portfolio-theme', theme)
     } catch {

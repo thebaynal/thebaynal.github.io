@@ -39,7 +39,7 @@ export default function ProjectBoard({ projects, onOpen, onDraggingChange, pause
         <span className="project-board-caption__touch">On touch, use the dotted grip.</span>
       </div>
       <div className="project-board" ref={boardRef} aria-label="Draggable project blocks" aria-describedby="project-board-instructions">
-        <span className="project-board__stamp" aria-hidden="true">THINGS<br />I’VE BUILT ↓</span>
+        <span className="project-board__stamp" aria-hidden="true">PICK UP<br />A PROJECT ↗</span>
         {projects.map((project, index) => (
           <article key={project.id} className={`project-block project-block--${COLORS[index % COLORS.length]}`} data-project-id={project.id} ref={(element) => {
             if (element) cardRefs.current.set(project.id, element)

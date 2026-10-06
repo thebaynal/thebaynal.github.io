@@ -1,33 +1,36 @@
 :root {
   font-family: Arial, Helvetica, sans-serif;
   color-scheme: light;
-  --ink: #1b2428;
-  --ink-muted: #505956;
-  --ink-soft: #5d6561;
-  --paper: #f4f0e6;
-  --paper-raised: #fffcf4;
-  --line: #c9c8bb;
-  --line-strong: #1b2428;
-  --accent: #244fd1;
-  --button-accent: #2959e8;
+  --ink: #151718;
+  --ink-muted: #575e5b;
+  --ink-soft: #626966;
+  --page-field: #e9edeb;
+  --paper: #ffffff;
+  --paper-raised: #f3f5f3;
+  --line: #dce1dd;
+  --line-strong: #7e8a81;
+  --accent: #5a419f;
+  --button-accent: #151718;
   --accent-ink: #ffffff;
-  --orange: #fa6e40;
-  --yellow: #f8ce46;
-  --display: 'Arial Black', 'Segoe UI', Arial, sans-serif;
+  --orange: #efaa8d;
+  --yellow: #e8eee4;
+  --display: 'Segoe UI', Arial, Helvetica, sans-serif;
   --mono: 'Cascadia Code', Consolas, 'Liberation Mono', monospace;
   --page-width: 1240px;
-  --gutter: clamp(1.15rem, 5vw, 5rem);
+  --gutter: clamp(1rem, 4.5vw, 4.5rem);
   --ease: cubic-bezier(.2, .75, .25, 1);
 }
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --ink: #f4f0e6;
-  --ink-muted: #cbcbbc;
-  --ink-soft: #afb5aa;
-  --paper: #1b2428;
-  --paper-raised: #263136;
-  --line: #566364;
-  --line-strong: #f4f0e6;
-  --accent: #aabfff;
-  --button-accent: #2959e8;
+  --ink: #f2f5ef;
+  --ink-muted: #b9c1ba;
+  --ink-soft: #a9b4ad;
+  --page-field: #0c100e;
+  --paper: #181d1a;
+  --paper-raised: #222924;
+  --line: #3c4740;
+  --line-strong: #7b8b80;
+  --accent: #d0bdf7;
+  --button-accent: #f2f5ef;
+  --accent-ink: #151718;
 }

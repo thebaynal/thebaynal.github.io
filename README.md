@@ -1,6 +1,6 @@
 # Divino Al Ricafort — Portfolio
 
-A React and Vite portfolio with a graphic cream-and-ink design, live public GitHub projects, and draggable project blocks powered by Matter.js. The project scene is the only physics area; the biography, skills, experience, and credentials stay readable.
+A React and Vite portfolio with a white editorial canvas, iridescent hero sculpture, live public GitHub projects, and draggable project blocks powered by Matter.js. The project scene is the only physics area; the biography, skills, experience, and credentials stay readable.
 
 ## Run and preview
 
