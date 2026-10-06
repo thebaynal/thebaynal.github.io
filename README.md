@@ -19,6 +19,8 @@ The production build goes to `dist/`. The existing GitHub Pages workflow deploys
 
 Blocks fall into a bounded scene, collide, and stack. Drag a whole block with a mouse or its dotted grip on a touch screen. Click, tap, Enter, or Space opens the same project details. Search covers the entire loaded collection; the playground shows eight results per page, while List view displays all matches.
 
+Project details expand from the selected project on desktop and rise as a sheet on phones, with a matching exit transition. Focus and scroll locking remain active until closing finishes. Reduced-motion preferences disable these transitions.
+
 Reset restores the arrangement. Pause stops motion. Movement controls offer a tap/keyboard alternative to dragging. Physics pauses when the scene is offscreen, the browser tab is hidden, or details are open. Reduced-motion preferences default to List view. Mobile scrolling remains available outside the drag grips.
 
 ## GitHub connection
@@ -36,6 +38,7 @@ GitHub requests are subject to its public API limits, so a successful refresh is
 - Repositories without authored notes show GitHub descriptions and primary language; they explicitly state that full stack and personal learning notes are unavailable.
 - `src/styles/tokens.css`: theme colors and typography. `global.css` handles page layout; `projects.css` handles the scene, blocks, list, and dialog.
 - `public/images/divinoalricafort.png`: existing portrait. `index.html`: page title and description.
+- Manrope headings and DM Sans body text are self-hosted through Fontsource. Their original font licenses are included in `public/fonts/`.
 - Add a real email address in the data file to enable the existing email draft/copy controls. Otherwise contact links point to LinkedIn and GitHub.
 
 ## Browser checks

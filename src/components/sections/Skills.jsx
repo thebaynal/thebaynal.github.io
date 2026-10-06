@@ -2,8 +2,8 @@ export default function Skills({ groups }) {
   return (
     <section className="skills section-wrap" id="skills" aria-labelledby="skills-title">
       <div className="section-heading-row" data-reveal>
-        <div><p className="section-label">Tools I work with</p><h2 className="display-heading" id="skills-title">The toolkit.</h2></div>
-        <p className="section-heading-note">Used across my public projects.<br />Open a project to see its stack.</p>
+        <div><p className="section-label">What I work with</p><h2 className="display-heading" id="skills-title">Skills &amp; tools.</h2></div>
+        <p className="section-heading-note">From school projects and cybersecurity training.<br />Open a project to see its stack.</p>
       </div>
       <div className="skills__groups">
         {groups.map((group) => (
@@ -13,7 +13,7 @@ export default function Skills({ groups }) {
           </div>
         ))}
       </div>
-      <a className="text-link skills__source" href="https://github.com/thebaynal" target="_blank" rel="noopener noreferrer">See the tools in use on GitHub ↗</a>
+      <a className="text-link skills__source" href="https://github.com/thebaynal" target="_blank" rel="noopener noreferrer">See my projects on GitHub ↗</a>
     </section>
   )
 }

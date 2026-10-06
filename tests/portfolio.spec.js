@@ -38,7 +38,7 @@ async function openList(page) {
 test('new visual hierarchy, default theme, saved dark theme, and portrait', async ({ page }) => {
   await mockGithub(page)
   await page.goto('/')
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Divino AlRicafort.')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Divino Al Ricafort.')
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
   await expect(page.getByAltText('Divino Al Ricafort speaking at an event')).toBeVisible()
   await page.getByRole('button', { name: 'Switch to dark theme' }).click()
@@ -76,6 +76,45 @@ test('modal includes authored details, confines focus, and restores the trigger'
   await expect.poll(() => page.evaluate(() => Boolean(document.activeElement.closest('dialog')))).toBe(true)
   await page.keyboard.press('Escape')
   await expect(dialog).toHaveCount(0)
+  await expect(opener).toBeFocused()
+})
+
+test('project details animate on desktop and mobile and close safely during entry', async ({ page }) => {
+  await mockGithub(page)
+  await page.goto('/')
+  await openList(page)
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 })
+    const opener = page.getByRole('button', { name: 'View UsTogether project details' })
+    await opener.click()
+    const dialog = page.getByRole('dialog')
+    await expect(dialog).toBeVisible()
+    await expect.poll(() => dialog.evaluate((element) => element.getAnimations().some((animation) => animation.playState === 'running')), { intervals: [10, 20, 40] }).toBe(true)
+    await expect(page.getByRole('button', { name: 'Close project details' })).toBeFocused()
+    await page.keyboard.press('Escape')
+    await expect(page.locator('.project-dialog--closing')).toHaveAttribute('open', '')
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe('hidden')
+    await page.keyboard.press('Escape') // Repeated dismissal must not restart the exit.
+    await expect(dialog).toHaveCount(0)
+    await expect(opener).toBeFocused()
+    await expect.poll(() => page.evaluate(() => document.body.style.overflow)).not.toBe('hidden')
+  }
+})
+
+test('project dismissal completes if animations are disabled or motion preference changes', async ({ page }) => {
+  await mockGithub(page)
+  await page.goto('/')
+  await openList(page)
+  const opener = page.getByRole('button', { name: 'View UsTogether project details' })
+  await opener.click()
+  await page.addStyleTag({ content: '.project-dialog, .project-dialog::backdrop { animation: none !important; }' })
+  await page.getByRole('button', { name: 'Close project details' }).click()
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await expect(opener).toBeFocused()
+  await opener.click()
+  await page.keyboard.press('Escape')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await expect(page.getByRole('dialog')).toHaveCount(0)
   await expect(opener).toBeFocused()
 })
 
@@ -129,6 +168,8 @@ test('reduced motion disables physics and responds to preference changes', async
   await expect(page.getByRole('button', { name: 'View UsTogether project details' })).toBeVisible()
   await page.getByRole('button', { name: 'View UsTogether project details' }).click()
   await expect(page.getByRole('dialog')).toBeVisible()
+  expect(await page.getByRole('dialog').evaluate((element) => element.getAnimations().length)).toBe(0)
+  expect(await page.locator('.project-dialog__body').evaluate((element) => element.getAnimations().length)).toBe(0)
   await page.keyboard.press('Escape')
   await page.emulateMedia({ reducedMotion: 'no-preference' })
   const gravity = page.getByRole('button', { name: 'Gravity view', exact: true })

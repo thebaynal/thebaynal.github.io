@@ -13,7 +13,8 @@ export default function Hero({ profile }) {
       <div className="hero__stage">
         <div className="hero__headline-wrap">
           <p className="hero__intro">{profile.intro}</p>
-          <p className="hero__interests">Software development <span aria-hidden="true">/</span> Cybersecurity <span aria-hidden="true">/</span> Applied AI</p>
+          <ul className="hero__interests" aria-label="Areas of focus">{profile.focusAreas.map((area) => <li key={area}>{area}</li>)}</ul>
+          <p className="hero__credential">{profile.credential}</p>
           <div className="hero__actions">
             <a className="button button--dark" href="#work">Explore my projects <span aria-hidden="true">↓</span></a>
             <a className="text-link" href={github} target="_blank" rel="noopener noreferrer">GitHub / thebaynal <span aria-hidden="true">↗</span></a>
