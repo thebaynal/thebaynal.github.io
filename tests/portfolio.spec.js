@@ -270,7 +270,7 @@ test('200 percent zoom-equivalent reflow has no horizontal overflow', async ({ p
   await expect(page.getByRole('button', { name: 'Close project details' })).toBeVisible()
 })
 
-test('real touch drag, native swipe scrolling, cancellation, and tap movement while paused', async ({ browser }) => {
+test('real touch drag, native swipe scrolling, cancellation, pause, and reset', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true })
   const page = await context.newPage()
   await mockGithub(page, repos(1))
@@ -283,6 +283,8 @@ test('real touch drag, native swipe scrolling, cancellation, and tap movement wh
     return Math.abs(card.y + card.height - (arena.y + arena.height - 36))
   }).toBeLessThan(4)
   await page.locator('.project-block__grip').scrollIntoViewIfNeeded()
+  await expect(page.locator('.project-block__grip')).toHaveAttribute('aria-hidden', 'true')
+  expect(await page.locator('.project-block__grip').evaluate((element) => element.tabIndex)).toBe(-1)
   const session = await context.newCDPSession(page)
   const grip = await page.locator('.project-block__grip').boundingBox()
   const start = await block.boundingBox()
@@ -310,9 +312,14 @@ test('real touch drag, native swipe scrolling, cancellation, and tap movement wh
   await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] })
   await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(scrollStart + 30)
   await page.getByRole('button', { name: 'Pause motion', exact: true }).click()
-  const stopped = await block.boundingBox()
-  await page.getByRole('button', { name: 'Move selected project up' }).click()
-  await expect.poll(async () => (await block.boundingBox()).y).toBeLessThan(stopped.y - 10)
+  const stoppedTransform = await block.evaluate((element) => element.style.transform)
+  await page.waitForTimeout(150) // Several animation frames must pass without advancing paused physics.
+  expect(await block.evaluate((element) => element.style.transform)).toBe(stoppedTransform)
+  await page.getByRole('button', { name: 'Reset blocks' }).click()
+  await expect.poll(() => block.evaluate((element) => element.style.transform)).not.toBe(stoppedTransform)
+  await expect(page.getByRole('button', { name: 'Resume motion', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('#project-move-select')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /Move selected project/ })).toHaveCount(0)
   await context.close()
 })
 

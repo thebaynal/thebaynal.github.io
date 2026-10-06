@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef } from 'react'
 import useProjectPhysics from '../../hooks/useProjectPhysics.js'
 
 const COLORS = ['blue', 'orange', 'yellow', 'pale', 'yellow', 'blue', 'pale', 'orange']
@@ -23,14 +23,7 @@ export default function ProjectBoard({ projects, onOpen, onDraggingChange, pause
   const boardRef = useRef(null)
   const cardRefs = useRef(new Map())
   const ids = useMemo(() => projects.map((project) => project.id), [projects])
-  const [moveId, setMoveId] = useState('')
-  const currentMoveId = projects.some((project) => String(project.id) === moveId) ? moveId : String(projects[0]?.id || '')
   const physics = useProjectPhysics({ boardRef, cardRefs, projectIds: ids, enabled: true, paused, onDraggingChange })
-
-  function nudge(direction) {
-    const project = projects.find((item) => String(item.id) === currentMoveId)
-    if (project) physics.nudge(project.id, direction)
-  }
 
   return (
     <div className="project-playground">
@@ -53,17 +46,12 @@ export default function ProjectBoard({ projects, onOpen, onDraggingChange, pause
               <span className="project-block__name" title={project.name}>{blockTitle(project)}</span>
               <span className="project-block__language">{project.language || project.stack[0] || 'Repository'}{project.archived ? ' · Archived' : project.fork ? ' · Fork' : ''}</span>
             </button>
-            <button type="button" className="project-block__grip" aria-label={`Drag ${project.name}; movement buttons are also available below`} title="Drag this block" onPointerDown={(event) => physics.onPointerDown(event, project.id, true)} onClick={(event) => {
-              if (!physics.suppressClick(event, project.id)) setMoveId(String(project.id))
-            }}><span aria-hidden="true">⠿</span></button>
+            <span className="project-block__grip" aria-hidden="true" title="Drag this block" onPointerDown={(event) => physics.onPointerDown(event, project.id, true)}>⠿</span>
           </article>
         ))}
         <div className="project-board__floor" aria-hidden="true"><span>DROP ZONE</span><span>↑ Pick something up</span></div>
       </div>
-      <div className="project-movement-controls" aria-label="Move projects without dragging">
-        <label htmlFor="project-move-select">Move a block</label>
-        <select id="project-move-select" value={currentMoveId} onChange={(event) => setMoveId(event.target.value)}>{projects.map((project) => <option value={String(project.id)} key={project.id}>{project.name}</option>)}</select>
-        <div className="project-movement-buttons">{[['left', '←'], ['up', '↑'], ['down', '↓'], ['right', '→']].map(([direction, arrow]) => <button type="button" onClick={() => nudge(direction)} aria-label={`Move selected project ${direction}`} key={direction}>{arrow}</button>)}</div>
+      <div className="project-board-controls" role="group" aria-label="Project motion controls">
         <button className="project-reset" type="button" onClick={physics.reset}>Reset blocks <span aria-hidden="true">↺</span></button>
         <button className="project-pause" type="button" onClick={onToggleMotion} aria-pressed={motionPaused}>{motionPaused ? 'Resume motion' : 'Pause motion'}</button>
       </div>

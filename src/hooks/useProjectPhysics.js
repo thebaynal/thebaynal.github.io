@@ -286,18 +286,6 @@ export default function useProjectPhysics({ boardRef, cardRefs, projectIds, enab
       pointerDown,
       sync,
       reset() { finishDrag(true); seed(); wakeAll() },
-      nudge(id, direction) {
-        const body = bodies.get(id)
-        if (!body) return
-        const offset = { left: { x: -42, y: 0 }, right: { x: 42, y: 0 }, up: { x: 0, y: -42 }, down: { x: 0, y: 42 } }[direction]
-        if (!offset) return
-        Body.setPosition(body, Vector.add(body.position, offset))
-        Body.setVelocity(body, { x: 0, y: 0 })
-        Body.setAngularVelocity(body, 0)
-        clampBody(body)
-        paint()
-        wakeAll()
-      },
     }
     sync()
 
@@ -339,6 +327,5 @@ export default function useProjectPhysics({ boardRef, cardRefs, projectIds, enab
     return false
   }, [])
   const reset = useCallback(() => control.current?.reset(), [])
-  const nudge = useCallback((id, direction) => control.current?.nudge(id, direction), [])
-  return { onPointerDown, suppressClick, reset, nudge }
+  return { onPointerDown, suppressClick, reset }
 }

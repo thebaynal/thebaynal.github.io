@@ -48,7 +48,6 @@
 .project-block__name { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; -webkit-box-orient: vertical; margin-top: auto; font: 600 clamp(1.15rem, 1.8vw, 1.4rem)/1.12 var(--display); letter-spacing: -.025em; overflow-wrap: anywhere; }
 .project-block__language { display: block; margin-top: .5rem; font: .58rem var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
 .project-block__grip { position: absolute; top: 0; right: 0; display: grid; place-items: center; width: 46px; height: 44px; border: 0; border-radius: 0 14px 0 14px; color: inherit; background: transparent; touch-action: none; cursor: grab !important; font-size: 1.7rem; }
-.project-block__grip:focus-visible { outline: 2px solid currentColor; outline-offset: -5px; }
 .project-block__motif { position: absolute; top: 34px; right: 12px; width: 42px; height: 30px; opacity: .9; pointer-events: none; }
 .project-motif--memory::before, .project-motif--memory::after { position: absolute; width: 19px; height: 25px; border: 2px solid currentColor; border-bottom-width: 6px; content: ''; }
 .project-motif--memory::before { left: 4px; transform: rotate(-12deg); }
@@ -65,13 +64,8 @@
 .project-motif--lexer { display: flex; width: 57px; gap: 2px; align-items: center; }
 .project-motif--lexer i { padding: 2px; border: 1px solid currentColor; font: .52rem var(--mono); font-style: normal; }
 .project-motif--file { width: 24px; height: 29px; border: 2px solid currentColor; display: grid; place-items: center; font: 700 .65rem var(--mono); }
-.project-movement-controls { display: flex; gap: .55rem; flex-wrap: wrap; align-items: center; padding: .9rem 0; font: .68rem var(--mono); }
-.project-movement-controls > label { margin-right: .35rem; }
-.project-movement-controls select { min-width: 100px; max-width: min(250px, 100%); min-height: 44px; padding: .5rem .8rem; border: 1px solid var(--line-strong); border-radius: 24px; color: var(--ink); background: var(--paper); font: .7rem var(--mono); }
-.project-movement-buttons { display: flex; gap: .25rem; }
-.project-movement-buttons button { width: 44px; height: 44px; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--ink); background: var(--paper); font-size: 1.2rem; }
-.project-movement-buttons button:hover { background: var(--paper-raised); }
-.project-reset { margin-left: auto; padding: .65rem .8rem; min-height: 44px; border: 0; background: transparent; color: var(--ink); font: .67rem var(--mono); text-decoration: underline; text-underline-offset: 4px; }
+.project-board-controls { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; justify-content: flex-end; padding: .9rem 0; font: .75rem var(--mono); }
+.project-reset { padding: .65rem .8rem; min-height: 44px; border: 0; background: transparent; color: var(--ink); font: .67rem var(--mono); text-decoration: underline; text-underline-offset: 4px; }
 .project-pause { min-height: 44px; padding: .65rem 1rem; border: 1px solid var(--line-strong); border-radius: 24px; background: var(--paper); color: var(--ink); font: .7rem var(--mono); }
 .project-pagination { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--line); font: .7rem var(--mono); }
 .project-pagination button, .project-empty button { padding: .7rem 1rem; min-height: 44px; border: 1px solid var(--line-strong); border-radius: 24px; background: var(--paper); color: var(--ink); font: .7rem var(--mono); }
@@ -153,10 +147,6 @@
   .project-block__open { padding: 12px; }
   .project-block__name { font-size: 1.125rem; }
   .project-block__motif { top: 33px; right: 10px; transform: scale(.85); transform-origin: right top; }
-  .project-movement-controls { gap: .6rem; }
-  .project-movement-controls > label { width: 100%; }
-  .project-movement-controls select { flex: 1; max-width: calc(100% - 190px); }
-  .project-reset { margin-left: 0; }
   .project-full-list > li > button { grid-template-columns: 25px 1fr 20px; gap: .65rem; }
   .project-full-list__language { grid-column: 2; grid-row: 2; text-align: left; }
   .project-full-list__language small { display: inline; margin-left: .7rem; }
@@ -175,8 +165,6 @@
   .project-block__name { font-size: 1.05rem; }
   .project-block__motif { top: 32px; right: 9px; transform: scale(.75); transform-origin: right top; }
   .project-board__floor { padding-inline: .5rem; font-size: .75rem; }
-  .project-movement-controls select { flex-basis: 100%; max-width: 100%; }
-  .project-reset { margin-left: auto; }
   .project-view-toggle { width: 100%; }
   .project-view-toggle button { flex: 1; justify-content: center; }
 }
@@ -190,7 +178,7 @@
 .project-connection__cooldown, .project-connection > button, .project-dialog__metadata,
 .project-dialog__category, .project-dialog__primary-language, .project-results-summary,
 .project-section-footnote, .project-search > span, .project-board-caption__touch,
-.project-movement-controls, .project-movement-controls select, .project-pause,
+.project-board-controls, .project-pause,
 .project-reset, .project-pagination, .project-pagination button, .project-view-toggle button,
 .project-full-list__language, .project-full-list__number, .project-board__floor,
 .project-board__stamp, .project-stack li, .project-dialog__topline,
