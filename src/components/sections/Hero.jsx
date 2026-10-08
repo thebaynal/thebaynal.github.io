@@ -22,10 +22,9 @@ export default function Hero({ profile }) {
             <a className="text-link" href={github} target="_blank" rel="noopener noreferrer">GitHub / thebaynal <span aria-hidden="true">↗</span></a>
           </div>
         </div>
-        <aside className="hero__focus" aria-label="Areas of focus and experience">
+        <aside className="hero__focus" aria-label="Areas of focus">
           <p className="hero__focus-label">Areas of focus</p>
           <ul className="hero__interests">{profile.focusAreas.map((area) => <li key={area}>{area}</li>)}</ul>
-          <p className="hero__credential">{profile.credential}</p>
         </aside>
       </div>
       <div className="hero__bottom">

@@ -20,6 +20,10 @@
   --page-width: 1240px;
   --gutter: clamp(1rem, 4.5vw, 4.5rem);
   --ease: cubic-bezier(.2, .75, .25, 1);
+  --theme-duration: 240ms;
+  --canvas-shadow: 0 12px 70px #1517180a;
+  --control-shadow: 0 2px 12px #1517180d;
+  --portrait-shadow: #15171814;
 }
 :root[data-theme='dark'] {
   color-scheme: dark;
@@ -34,4 +38,7 @@
   --accent: #d0bdf7;
   --button-accent: #f2f5ef;
   --accent-ink: #151718;
+  --canvas-shadow: 0 12px 70px #00000033;
+  --control-shadow: 0 2px 16px #00000026;
+  --portrait-shadow: #00000026;
 }

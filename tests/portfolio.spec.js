@@ -46,6 +46,84 @@ test('new visual hierarchy, default theme, saved dark theme, and portrait', asyn
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
 })
 
+test('saved theme is applied before the React entry module loads', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('portfolio-theme', 'dark'))
+  await mockGithub(page)
+  let release
+  const entry = new Promise((resolve) => { release = resolve })
+  await page.route('**/src/main.jsx*', async (route) => {
+    await entry
+    await route.continue()
+  })
+  try {
+    await page.goto('/', { waitUntil: 'commit' })
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+    await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#181d1a')
+    await expect(page.locator('#root > *')).toHaveCount(0)
+    await expect(page.locator('html')).not.toHaveAttribute('data-theme-transition', 'active')
+  } finally { release() }
+  await expect(page.getByRole('button', { name: 'Switch to light theme' })).toBeVisible()
+})
+
+test('rapid theme clicks preserve the final state and clear their animation marker', async ({ page }) => {
+  await mockGithub(page)
+  await page.goto('/')
+  await expect(page.getByRole('button', { name: 'Switch to dark theme' })).toBeVisible()
+  const result = await page.locator('.theme-toggle').evaluate((button) => {
+    button.click()
+    button.click()
+    button.click()
+    return {
+      theme: document.documentElement.dataset.theme,
+      saved: localStorage.getItem('portfolio-theme'),
+      transition: document.documentElement.dataset.themeTransition,
+      color: document.querySelector('meta[name="theme-color"]').content,
+    }
+  })
+  expect(result).toEqual({ theme: 'dark', saved: 'dark', transition: 'active', color: '#181d1a' })
+  await expect(page.getByRole('button', { name: 'Switch to light theme' })).toBeVisible()
+  await expect(page.locator('.theme-toggle svg')).toHaveCount(1)
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme-transition', 'active')
+  await page.reload()
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme-transition', 'active')
+})
+
+test('theme switching still works when browser storage is unavailable', async ({ page }) => {
+  await page.addInitScript(() => {
+    Storage.prototype.getItem = () => { throw new Error('Storage disabled') }
+    Storage.prototype.setItem = () => { throw new Error('Storage disabled') }
+  })
+  await mockGithub(page)
+  await page.goto('/')
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+  await page.getByRole('button', { name: 'Switch to dark theme' }).click()
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+  await page.getByRole('button', { name: 'Switch to light theme' }).click()
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#ffffff')
+})
+
+test('reduced motion switches themes immediately and clears an active transition', async ({ page }) => {
+  await mockGithub(page)
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/')
+  const reduced = await page.locator('.theme-toggle').evaluate((button) => {
+    button.click()
+    return { theme: document.documentElement.dataset.theme, marker: document.documentElement.dataset.themeTransition || null }
+  })
+  expect(reduced).toEqual({ theme: 'dark', marker: null })
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  const animated = await page.locator('.theme-toggle').evaluate((button) => {
+    button.click()
+    return document.documentElement.dataset.themeTransition
+  })
+  expect(animated).toBe('active')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme-transition', 'active')
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+})
+
 test('complete GitHub pagination, eight-body pages, and whole-collection search', async ({ page }) => {
   const calls = await mockGithub(page, repos(106))
   await page.goto('/')

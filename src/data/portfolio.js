@@ -6,7 +6,6 @@ export const portfolio = {
   headline: ['Learning.', 'Building.', 'For impact.'],
   intro: 'I’m a computer science student working on software, cloud, AI, and machine learning projects, with an interest in data science and cybersecurity.',
   focusAreas: ['Software & cloud', 'Data science', 'AI & machine learning', 'Cybersecurity'],
-  credential: 'Cybersecurity nationals competitor · WorldSkills Philippines, Region 5',
   email: '',
   socialLinks: [
     { label: 'GitHub', href: 'https://github.com/thebaynal', short: 'GH' },

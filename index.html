@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ffffff" />
+    <script>
+      (() => {
+        let theme = 'light'
+        try {
+          if (localStorage.getItem('portfolio-theme') === 'dark') theme = 'dark'
+        } catch { /* The default remains usable when storage is unavailable. */ }
+        document.documentElement.dataset.theme = theme
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#181d1a' : '#ffffff')
+      })()
+    </script>
     <meta name="description" content="Divino Al Ricafort’s work in software and cloud development, data science, AI, and machine learning. WorldSkills Philippines cybersecurity nationals competitor, Region 5." />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <title>Divino Al Ricafort — Developer Portfolio</title>

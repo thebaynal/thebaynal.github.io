@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { portfolio } from './data/portfolio.js'
 import SiteHeader from './components/ui/SiteHeader.jsx'
 import ThemeToggle from './components/ui/ThemeToggle.jsx'
@@ -11,26 +11,62 @@ import Certifications from './components/sections/Certifications.jsx'
 import Contact from './components/sections/Contact.jsx'
 
 function getInitialTheme() {
-  try {
-    const saved = localStorage.getItem('portfolio-theme')
-    return saved === 'dark' ? 'dark' : 'light'
-  } catch {
-    return 'light'
-  }
+  // index.html applies the saved preference before any application styles paint.
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'
+}
+
+function applyTheme(theme) {
+  const root = document.documentElement
+  if (root.dataset.theme !== theme) root.dataset.theme = theme
+  const color = theme === 'dark' ? '#181d1a' : '#ffffff'
+  const meta = document.querySelector('meta[name="theme-color"]')
+  if (meta?.getAttribute('content') !== color) meta?.setAttribute('content', color)
 }
 
 export default function App() {
   const [theme, setTheme] = useState(getInitialTheme)
+  const themeRef = useRef(theme)
+  const themeTimer = useRef(null)
+
+  const clearThemeTransition = useCallback(() => {
+    window.clearTimeout(themeTimer.current)
+    themeTimer.current = null
+    delete document.documentElement.dataset.themeTransition
+  }, [])
+
+  useLayoutEffect(() => {
+    applyTheme(theme)
+  }, [theme])
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#181d1a' : '#ffffff')
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    function syncMotion() {
+      if (motion.matches) clearThemeTransition()
+    }
+    motion.addEventListener('change', syncMotion)
+    return () => {
+      motion.removeEventListener('change', syncMotion)
+      clearThemeTransition()
+    }
+  }, [clearThemeTransition])
+
+  function toggleTheme() {
+    const nextTheme = themeRef.current === 'dark' ? 'light' : 'dark'
+    // The ref handles several clicks before React commits the next button label.
+    themeRef.current = nextTheme
+    clearThemeTransition()
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.dataset.themeTransition = 'active'
+      themeTimer.current = window.setTimeout(clearThemeTransition, 300)
+    }
+    applyTheme(nextTheme)
+    setTheme(nextTheme)
     try {
-      localStorage.setItem('portfolio-theme', theme)
+      localStorage.setItem('portfolio-theme', nextTheme)
     } catch {
       // The site still works when browser storage is disabled.
     }
-  }, [theme])
+  }
 
   useEffect(() => {
     if (!('IntersectionObserver' in window)) return undefined
@@ -82,7 +118,7 @@ export default function App() {
         <a href="https://github.com/thebaynal/thebaynal.github.io" target="_blank" rel="noopener noreferrer">Built with React. Source on GitHub ↗</a>
         <a href="#top">Back to top ↑</a>
       </footer>
-      <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+      <ThemeToggle theme={theme} onToggle={toggleTheme} />
     </>
   )
 }
