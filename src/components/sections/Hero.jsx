@@ -7,7 +7,7 @@ export default function Hero({ profile }) {
   return (
     <section className="hero page-shell" aria-labelledby="hero-title">
       <p className="hero__pretitle"><span>Computer science student</span><span aria-hidden="true">/</span><span>Philippines</span></p>
-      <h1 className="hero__title" id="hero-title" aria-label={profile.name}><span>{firstNames}{' '}</span><span>{familyName}<span className="hero__period">.</span></span></h1>
+      <h1 className="hero__title" id="hero-title" aria-label={profile.name}><span className="hero__given-name">{firstNames}{' '}</span><span className="hero__family-name">{familyName}<span className="hero__period">.</span></span></h1>
       <div className="hero__stage">
         <div className="hero__visual">
           <figure className="hero__portrait">

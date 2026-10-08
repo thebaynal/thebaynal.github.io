@@ -30,7 +30,7 @@ export default function Contact({ contact, email, socialLinks }) {
       <p className="section-label" data-reveal>{contact.eyebrow}</p>
       <div className="contact__grid">
         <div className="contact__copy" data-reveal>
-          <h2 className="display-heading" id="contact-title">Have a project<br />in mind?</h2>
+          <h2 className="display-heading display-heading--editorial" id="contact-title">Have a project<br />in mind?</h2>
           <p>{contact.description}</p>
           {email && (
             <>

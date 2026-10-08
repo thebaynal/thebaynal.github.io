@@ -1,5 +1,5 @@
 :root {
-  font-family: 'DM Sans Variable', Arial, Helvetica, sans-serif;
+  font-family: var(--reading);
   font-optical-sizing: auto;
   color-scheme: light;
   --ink: #151718;
@@ -16,6 +16,8 @@
   --orange: #efaa8d;
   --yellow: #e8eee4;
   --display: 'Manrope Variable', 'Segoe UI', Arial, sans-serif;
+  --reading: 'DM Sans Variable', Arial, Helvetica, sans-serif;
+  --editorial: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --mono: 'Cascadia Code', Consolas, 'Liberation Mono', monospace;
   --page-width: 1240px;
   --gutter: clamp(1rem, 4.5vw, 4.5rem);

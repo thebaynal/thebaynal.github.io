@@ -1,6 +1,6 @@
 .project-section-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin: 1.5rem 0 2.5rem; }
 .project-section-heading__eyebrow { margin: 0 0 1rem; font: .7rem var(--mono); }
-.project-section-heading h2 { margin: 0; font-family: var(--display); font-size: clamp(2.8rem, 5.4vw, 4.7rem); font-weight: 450; line-height: 1.1; letter-spacing: -.04em; }
+.project-section-heading h2 { margin: 0; font-family: var(--editorial); font-size: clamp(2.75rem, 5.4vw, 4.25rem); font-weight: 400; font-synthesis: none; line-height: 1.08; letter-spacing: -.015em; overflow-wrap: anywhere; }
 .project-section-heading h2 span { color: var(--ink); }
 .project-section-heading > p { margin: 0 0 .2rem; font-size: .95rem; line-height: 1.65; }
 .project-connection { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: .85rem 1rem; border: 1px solid var(--line); border-radius: 18px; background: var(--paper-raised); }
@@ -75,7 +75,7 @@
 .project-full-list > li > button:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
 .project-full-list__number { align-self: start; padding-top: .25rem; font: .63rem var(--mono); }
 .project-full-list__copy { display: flex; flex-direction: column; gap: .45rem; min-width: 0; }
-.project-full-list__copy strong { font: 550 clamp(1.1rem, 2.2vw, 1.7rem)/1.25 var(--display); letter-spacing: -.025em; overflow-wrap: anywhere; }
+.project-full-list__copy strong { font: 600 clamp(1.1rem, 2.2vw, 1.7rem)/1.25 var(--display); letter-spacing: -.025em; overflow-wrap: anywhere; }
 .project-full-list__copy > span { font-size: .8rem; line-height: 1.55; max-width: 70ch; }
 .project-full-list__language { font: .65rem var(--mono); text-align: right; }
 .project-full-list__language small { display: block; margin-top: .35rem; }
@@ -119,7 +119,7 @@
 .project-dialog__topline button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .project-dialog__body { padding: clamp(1.3rem, 4vw, 3rem); }
 .project-dialog__category { margin: 0 0 1rem; font: .65rem/1.5 var(--mono); }
-.project-dialog h2 { margin: 0; font: 500 clamp(2.2rem, 4.5vw, 4rem)/1.12 var(--display); letter-spacing: -.035em; overflow-wrap: anywhere; }
+.project-dialog h2 { margin: 0; font: 550 clamp(2.2rem, 4.5vw, 4rem)/1.12 var(--display); letter-spacing: -.035em; overflow-wrap: anywhere; }
 .project-dialog__overview { margin: 1.3rem 0 2rem; font-size: 1rem; line-height: 1.7; max-width: 70ch; }
 .project-dialog h3 { margin: 0 0 .9rem; font: 600 1.125rem var(--display); letter-spacing: -.02em; }
 .project-dialog__features { padding-bottom: 1.5rem; }
@@ -183,3 +183,20 @@
 .project-full-list__language, .project-full-list__number, .project-board__floor,
 .project-board__stamp, .project-stack li, .project-dialog__topline,
 .project-dialog__topline button, .project-dialog__links a { font-size: .75rem; }
+
+/* Use technical type for repository facts; keep actions in the reading face. */
+.project-connection__status, .project-results-summary, .project-search > span,
+.project-full-list__language, .project-full-list__number, .project-section-footnote,
+.project-dialog__category, .project-dialog__metadata, .project-dialog__primary-language,
+.project-dialog__topline, .project-stack li { font-size: .8125rem; line-height: 1.6; }
+.project-connection > button, .project-view-toggle button, .project-pause, .project-reset,
+.project-pagination button, .project-empty button, .project-dialog__topline button,
+.project-dialog__links a { font-family: var(--reading); font-size: .875rem; font-weight: 500; line-height: 1.5; }
+.project-search input { font-size: 1rem; }
+.project-dialog__features ul, .project-skills { font-size: .9375rem; }
+.project-results-summary, .project-full-list__number, .project-dialog__metadata { font-variant-numeric: tabular-nums; }
+@media (max-width: 400px) {
+  .project-pagination { flex-wrap: wrap; }
+  .project-pagination > span { flex-basis: 100%; order: -1; text-align: center; }
+  .project-pagination button { flex: 1; padding-inline: .5rem; }
+}
