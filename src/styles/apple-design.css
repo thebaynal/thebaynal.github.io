@@ -1,8 +1,9 @@
 /* Apple-design foundations: calm hierarchy, purposeful materials, direct feedback. */
 :root {
-  --display: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --reading: var(--display);
+  --display: 'Manrope Variable', sans-serif;
+  --reading: 'DM Sans Variable', sans-serif;
   --editorial: var(--display);
+  --mono: var(--reading);
   --ink: #1d1d1f;
   --ink-muted: #56565d;
   --ink-soft: #626269;
@@ -90,9 +91,15 @@ body { padding: 0; background: var(--paper); line-height: 1.6; }
 .project-board { border-width: 1px; border-radius: 28px; }
 .project-block { border-radius: 20px; }
 .project-full-list > li > button { border-radius: 16px; padding-inline: 1rem; }
-.certifications__grid { gap: 1rem; border: 0; background: transparent; }
-.certification-card { border: 1px solid var(--line); border-radius: 24px; background: var(--paper-raised); }
-.certification-card--progress::before { inset: 1.5rem auto 1.5rem 0; border-radius: 3px; }
+.certifications__heading { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 2rem; margin-bottom: 2rem; }
+.certifications__heading > p { max-width: 48ch; line-height: 1.6; }
+.certifications__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; border: 0; background: transparent; }
+.certification-card { display: flex; flex-direction: column; align-items: stretch; gap: 1.25rem; min-width: 0; padding: 1.75rem; border: 1px solid var(--line); border-radius: 24px; background: var(--paper-raised); }
+.certification-card__top { display: flex; align-items: center; }
+.certification-card__status { align-self: flex-start; padding: .3rem .65rem; border-color: var(--line); background: var(--paper); font: 500 .75rem/1.5 var(--reading); letter-spacing: 0; }
+.certification-card--progress .certification-card__status { color: var(--accent); }
+.certification-card h3 { margin: 0; font: 600 clamp(1.125rem, 1.6vw, 1.4rem)/1.4 var(--display); letter-spacing: -.02em; overflow-wrap: anywhere; }
+.certification-card__meta { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); font: 400 .8125rem/1.5 var(--reading); letter-spacing: 0; color: var(--ink-muted); }
 .contact-form { border: 0; border-radius: 28px; padding: 2.25rem; }
 .contact-form h3 { font-weight: 650; }
 .theme-toggle { background: var(--chrome); backdrop-filter: blur(20px) saturate(160%); border-color: var(--line); box-shadow: var(--chrome-shadow); }
@@ -116,8 +123,17 @@ body { padding: 0; background: var(--paper); line-height: 1.6; }
   .hero__visual { max-width: 300px; }
   .hero__portrait img { max-height: 290px; }
   .hero__focus { width: 100%; }
+  .certifications__heading { grid-template-columns: 1fr; gap: 1rem; }
+  .certifications__grid { grid-template-columns: 1fr; }
+  .certification-card { padding: 1.25rem; }
   .contact-form { padding: 1.5rem; }
 }
+/* Keep small labels readable and avoid editorial tracking on body-sized text. */
+.hero h1 { letter-spacing: -.045em; }
+.display-heading, .display-heading--editorial, .project-section-heading h2 { letter-spacing: -.035em; }
+.section-label, .section-kicker, .contact-form__eyebrow { letter-spacing: 0; }
+.project-connection__status, .project-results-summary, .project-view-toggle button,
+.project-pagination, .project-board-controls, .project-block__language { font-size: .8125rem; }
 @media (prefers-reduced-transparency: reduce) {
   .site-header, .theme-toggle { background: var(--paper); backdrop-filter: none; }
   .project-dialog::backdrop { backdrop-filter: none; background: #000000aa; }
