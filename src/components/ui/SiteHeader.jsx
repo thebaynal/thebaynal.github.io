@@ -12,7 +12,7 @@ export default function SiteHeader({ name }) {
   return (
     <header className="site-header">
       <a className="wordmark" href="#top" aria-label={`${name}, home`}>
-        <span className="wordmark__mark" aria-hidden="true">d/r</span>
+        <img className="wordmark__mark" src="./favicon.svg?v=dr-1" width="32" height="32" alt="" aria-hidden="true" />
         <span>{name.split(' ')[0]}</span>
       </a>
       <button

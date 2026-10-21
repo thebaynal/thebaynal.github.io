@@ -49,7 +49,7 @@ body { padding: 0; background: var(--paper); line-height: 1.6; }
   box-shadow: var(--chrome-shadow);
 }
 .wordmark { font-weight: 650; letter-spacing: -.025em; }
-.wordmark__mark { border-radius: 10px; background: var(--paper-raised); color: var(--ink); }
+.wordmark__mark { display: block; flex: none; border-radius: 9px; background: transparent; }
 .primary-nav { gap: .5rem; }
 .primary-nav a { padding: .5rem .85rem; border-radius: 12px; }
 .primary-nav a:hover { background: var(--paper-raised); text-decoration: none; }
