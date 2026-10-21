@@ -103,7 +103,7 @@ export default function App() {
     <>
       <div id="top" aria-hidden="true" />
       <a className="skip-link" href="#main">Skip to content</a>
-      <SiteHeader name={portfolio.name} />
+      <SiteHeader />
       <main id="main">
         <Hero profile={portfolio} />
         <Projects projects={portfolio.projects} />

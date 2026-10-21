@@ -6,15 +6,11 @@ const navItems = [
   { label: 'Contact', href: '#contact' },
 ]
 
-export default function SiteHeader({ name }) {
+export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const nameParts = name.trim().split(/\s+/)
 
   return (
     <header className="site-header">
-      <a className="wordmark" href="#top" aria-label={`${name}, home`}>
-        <span className="wordmark__name">{nameParts.slice(0, -1).join(' ')}{' '}<span className="wordmark__surname">{nameParts.at(-1)}</span></span>
-      </a>
       <button
         className="menu-toggle"
         type="button"

@@ -38,6 +38,8 @@ body { padding: 0; background: var(--paper); line-height: 1.6; }
 #root { max-width: none; margin: 0; border-radius: 0; box-shadow: none; min-height: 100dvh; }
 ::selection { background: #b8dcff; color: #1d1d1f; }
 .site-header {
+  justify-content: center;
+  gap: 1rem;
   top: .75rem;
   min-height: 64px;
   margin-top: .75rem;
@@ -48,9 +50,6 @@ body { padding: 0; background: var(--paper); line-height: 1.6; }
   backdrop-filter: blur(24px) saturate(160%);
   box-shadow: var(--chrome-shadow);
 }
-.wordmark { min-width: 0; font-size: 1.2rem; font-weight: 700; letter-spacing: -.05em; line-height: 1.2; }
-.wordmark__name { white-space: nowrap; }
-.wordmark__surname { font-weight: 450; }
 .primary-nav { gap: .5rem; }
 .primary-nav a { padding: .5rem .85rem; border-radius: 12px; }
 .primary-nav a:hover { background: var(--paper-raised); text-decoration: none; }
@@ -115,9 +114,8 @@ body { padding: 0; background: var(--paper); line-height: 1.6; }
 }
 @media (max-width: 640px) {
   .site-header { min-height: 60px; padding-inline: .85rem; gap: .5rem; border-radius: 18px; }
-  .wordmark { font-size: clamp(.9375rem, 4vw, 1.125rem); }
   .primary-nav { top: calc(100% + .5rem); border-radius: 18px; background: var(--paper); box-shadow: var(--chrome-shadow); }
-  .primary-nav a { padding: .8rem; }
+  .primary-nav a { justify-content: center; padding: .8rem; }
   .hero { padding-top: 3rem; }
   .hero h1 { font-size: clamp(2.75rem, 11vw, 4rem); }
   .hero__family-name { font-size: 1em; }
