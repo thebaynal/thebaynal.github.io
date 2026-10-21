@@ -8,12 +8,12 @@ const navItems = [
 
 export default function SiteHeader({ name }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const nameParts = name.trim().split(/\s+/)
 
   return (
     <header className="site-header">
       <a className="wordmark" href="#top" aria-label={`${name}, home`}>
-        <img className="wordmark__mark" src="./favicon.svg?v=dr-1" width="32" height="32" alt="" aria-hidden="true" />
-        <span>{name.split(' ')[0]}</span>
+        <span className="wordmark__name">{nameParts.slice(0, -1).join(' ')}{' '}<span className="wordmark__surname">{nameParts.at(-1)}</span></span>
       </a>
       <button
         className="menu-toggle"

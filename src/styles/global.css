@@ -14,7 +14,6 @@ button:disabled { cursor: not-allowed; }
 .page-shell, .section-wrap, .site-footer, .site-header { width: min(100% - 2 * var(--gutter), var(--page-width)); margin-inline: auto; }
 .site-header { position: sticky; z-index: 20; top: 0; display: flex; align-items: center; gap: 2rem; min-height: 88px; border-bottom: 1px solid var(--line); background: var(--paper); }
 .wordmark { display: inline-flex; align-items: center; gap: .7rem; min-height: 44px; margin-right: auto; font-family: var(--display); font-weight: 600; font-size: 1rem; letter-spacing: -.035em; }
-.wordmark__mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--paper); font: .66rem var(--mono); }
 .primary-nav { display: flex; align-items: center; gap: 1.6rem; font-size: .875rem; font-weight: 500; }
 .primary-nav a { display: inline-flex; align-items: center; min-height: 44px; }
 .primary-nav a:hover, .header-availability:hover { text-decoration: underline; text-underline-offset: 5px; }

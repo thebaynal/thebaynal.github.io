@@ -48,8 +48,9 @@ body { padding: 0; background: var(--paper); line-height: 1.6; }
   backdrop-filter: blur(24px) saturate(160%);
   box-shadow: var(--chrome-shadow);
 }
-.wordmark { font-weight: 650; letter-spacing: -.025em; }
-.wordmark__mark { display: block; flex: none; border-radius: 9px; background: transparent; }
+.wordmark { min-width: 0; font-size: 1.2rem; font-weight: 700; letter-spacing: -.05em; line-height: 1.2; }
+.wordmark__name { white-space: nowrap; }
+.wordmark__surname { font-weight: 450; }
 .primary-nav { gap: .5rem; }
 .primary-nav a { padding: .5rem .85rem; border-radius: 12px; }
 .primary-nav a:hover { background: var(--paper-raised); text-decoration: none; }
@@ -114,6 +115,7 @@ body { padding: 0; background: var(--paper); line-height: 1.6; }
 }
 @media (max-width: 640px) {
   .site-header { min-height: 60px; padding-inline: .85rem; gap: .5rem; border-radius: 18px; }
+  .wordmark { font-size: clamp(.9375rem, 4vw, 1.125rem); }
   .primary-nav { top: calc(100% + .5rem); border-radius: 18px; background: var(--paper); box-shadow: var(--chrome-shadow); }
   .primary-nav a { padding: .8rem; }
   .hero { padding-top: 3rem; }
