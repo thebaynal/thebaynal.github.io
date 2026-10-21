@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
+import { portfolio } from '../src/data/portfolio.js'
 
-const known = ['UsTogether', 'MaScan_QR_Attendance_Checker', 'taglish_grammar_correction', '3D-Image-Projection-Using-Linear-Algebra', 'LexicalAnalyzerVisualizer']
+const known = ['UsTogether', 'MaScan_QR_Attendance_Checker', 'Taglish-Grammar-Correction-Model-Fine-tuned-Mistral-7b', '3D-Image-Projection-Using-Linear-Algebra', 'LexicalAnalyzerVisualizer']
 function repos(count = 12) {
   return Array.from({ length: count }, (_, index) => ({
     id: index + 100,
@@ -264,11 +265,37 @@ test('offline cold load keeps authored projects and storage can be unavailable',
   })
   await page.route('https://api.github.com/**', (route) => route.abort())
   await page.goto('/')
-  await expect(page.locator('.project-block')).toHaveCount(5)
+  await expect(page.locator('.project-block')).toHaveCount(8)
   await expect(page.locator('.project-connection')).toContainText(/unavailable|fetch|saved|offline/i)
   await openList(page)
+  await expect(page.locator('.project-full-list > li')).toHaveCount(10)
   await page.getByRole('button', { name: 'View MaScan project details' }).click()
   await expect(page.getByRole('dialog')).toContainText('PDF attendance reports')
+})
+
+test('current repositories receive detailed notes and renamed Taglish links resolve', async ({ page }) => {
+  await mockGithub(page, portfolio.projects.map((project, index) => ({
+    id: 900 + index, name: project.fullName.split('/')[1], full_name: project.fullName,
+    private: false, description: null, language: 'Python',
+  })))
+  await page.goto('/')
+  await openList(page)
+  await expect(page.locator('.project-full-list > li')).toHaveCount(10)
+  for (const [name, detail] of [
+    ['SmartStock AI', '360 product-store series'],
+    ['VisionDrive', 'Physical collision avoidance'],
+    ['AI Image Detection', 'historical image-classification project'],
+    ['MaScan on Azure', 'My credited work'],
+    ['Taglish Grammar Correction', 'code-switched Filipino-English'],
+  ]) {
+    await page.getByRole('button', { name: `View ${name} project details`, exact: true }).click()
+    await expect(page.getByRole('dialog')).toContainText(detail)
+    if (name === 'Taglish Grammar Correction') {
+      await expect(page.getByRole('link', { name: 'Open repository', exact: true })).toHaveAttribute('href', 'https://github.com/thebaynal/Taglish-Grammar-Correction-Model-Fine-tuned-Mistral-7b')
+    }
+    await page.keyboard.press('Escape')
+    await expect(page.getByRole('dialog')).toHaveCount(0)
+  }
 })
 
 test('a successful empty response produces an empty state', async ({ page }) => {

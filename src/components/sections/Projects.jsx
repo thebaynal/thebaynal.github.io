@@ -53,7 +53,7 @@ export default function Projects({ projects }) {
     setSelected(project)
   }
 
-  const connectionText = github.status === 'loading' ? 'Checking GitHub…' : github.status === 'live' ? 'Connected to GitHub' : github.status === 'cached' ? 'Saved GitHub collection' : github.usingFallback ? 'Showing five project notes · GitHub unavailable' : 'Showing saved collection · GitHub unavailable'
+  const connectionText = github.status === 'loading' ? 'Checking GitHub…' : github.status === 'live' ? 'Connected to GitHub' : github.status === 'cached' ? 'Saved GitHub collection' : github.usingFallback ? `Showing ${projects.length} project notes · GitHub unavailable` : 'Showing saved collection · GitHub unavailable'
 
   return (
     <section className="projects section-wrap" id="work" aria-labelledby="projects-title" onFocusCapture={(event) => {

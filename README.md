@@ -27,7 +27,7 @@ Reset restores the arrangement. Pause stops motion. Movement controls offer a ta
 
 The portfolio reads all public repositories belonging to `thebaynal`, including forks and archived repositories, using the public GitHub REST API. No account sign-in, browser token, or backend is required. It fetches every page before publishing a refreshed collection; no extra request is made per repository.
 
-A complete collection is cached locally for one hour, with stale data refreshed in the background. Manual refresh has a 60-second cooldown. Failed or rate-limited requests retain the last complete collection; if none exists, the five authored projects stay usable. A successful empty collection shows an empty state. New public repositories appear after the next successful refresh.
+A complete collection is cached locally for one hour, with stale data refreshed in the background. Manual refresh has a 60-second cooldown. Failed or rate-limited requests retain the last complete collection; if none exists, the ten authored projects stay usable. A successful empty collection shows an empty state. New public repositories appear after the next successful refresh.
 
 GitHub requests are subject to its public API limits, so a successful refresh is required to discover changes. Cached data and authored fallback projects are explicitly identified in the interface.
 
@@ -59,4 +59,4 @@ Tests mock GitHub and cover multi-page discovery, cache preservation on failure,
 
 ## Content sources
 
-The five authored projects retain the repository links and documented technologies from the original portfolio: UsTogether, MaScan, Taglish Grammar Correction, 3D Image Projection, and Lexical Analyzer Visualizer. [The CSPC report](https://ccs.cspc.edu.ph/2025/08/20/day2aideas2025hackathon/) supports the education and Team INFRA achievement entries. WorldSkills and Philippine Startup Challenge details were supplied by Divino. Certificate records preserve the supplied titles, issuers, dates, and completion statuses.
+As of 21 October 2026, ten authored project notes cover SmartStock AI, VisionDrive, UsTogether, MaScan, Taglish Grammar Correction, MaScan on Azure, AI Image Detection, Computer Vision Labs, 3D Image Projection, and Lexical Analyzer Visualizer. Descriptions and technologies were checked against the current public repository READMEs and file listings. VisionDrive remains an academic prototype; AI Image Detection is labeled as historical. The Taglish link uses its current repository name. [The CSPC report](https://ccs.cspc.edu.ph/2025/08/20/day2aideas2025hackathon/) supports the education and Team INFRA achievement entries. WorldSkills and Philippine Startup Challenge details were supplied by Divino. Certificate records preserve the supplied titles, issuers, dates, and completion statuses.

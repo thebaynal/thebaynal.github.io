@@ -13,7 +13,7 @@ function ProjectMotif({ project }) {
   const fullName = project.fullName.toLowerCase()
   if (fullName.endsWith('/ustogether')) return <span className="project-block__motif project-motif--memory" aria-hidden="true" />
   if (fullName.endsWith('/mascan_qr_attendance_checker') || fullName.endsWith('/qr-attendance-checker')) return <span className="project-block__motif project-motif--scan" aria-hidden="true" />
-  if (fullName.endsWith('/taglish_grammar_correction')) return <span className="project-block__motif project-motif--language" aria-hidden="true"><del>kamusta</del><b>kumusta</b></span>
+  if (fullName.endsWith('/taglish-grammar-correction-model-fine-tuned-mistral-7b')) return <span className="project-block__motif project-motif--language" aria-hidden="true"><del>kamusta</del><b>kumusta</b></span>
   if (fullName.endsWith('/3d-image-projection-using-linear-algebra')) return <span className="project-block__motif project-motif--cube" aria-hidden="true"><i /></span>
   if (fullName.endsWith('/lexicalanalyzervisualizer')) return <span className="project-block__motif project-motif--lexer" aria-hidden="true"><i>int</i><i>x</i><i>;</i></span>
   return <span className="project-block__motif project-motif--file" aria-hidden="true">{'{ }'}</span>
