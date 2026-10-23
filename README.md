@@ -60,3 +60,12 @@ Tests mock GitHub and cover multi-page discovery, cache preservation on failure,
 ## Content sources
 
 As of 21 October 2026, ten authored project notes cover SmartStock AI, VisionDrive, UsTogether, MaScan, Taglish Grammar Correction, MaScan on Azure, AI Image Detection, Computer Vision Labs, 3D Image Projection, and Lexical Analyzer Visualizer. Descriptions and technologies were checked against the current public repository READMEs and file listings. VisionDrive remains an academic prototype; AI Image Detection is labeled as historical. The Taglish link uses its current repository name. [The CSPC report](https://ccs.cspc.edu.ph/2025/08/20/day2aideas2025hackathon/) supports the education and Team INFRA achievement entries. WorldSkills and Philippine Startup Challenge details were supplied by Divino. Certificate records preserve the supplied titles, issuers, dates, and completion statuses.
+
+
+## Methodology
+
+The site combines authored profile/project notes with public repository metadata from the GitHub REST API. It paginates the complete repository collection, caches successful results, and keeps the last complete collection or authored fallback when refreshes fail. React renders the portfolio sections, while Matter.js controls only the draggable project scene. Detail dialogs, keyboard alternatives, responsive layouts, and reduced-motion behavior keep the project collection accessible through multiple interaction modes. Vite creates the static production export used by the existing Pages workflow.
+
+## Results and scope
+
+The delivered artifact is a portfolio presenting biography, skills, credentials, project notes, and live public-repository discovery. The repository includes a Playwright suite covering discovery/cache behavior, project interaction, focus, reduced motion, and responsive layouts, as described above. No new browser-test run or production deployment check was performed for this documentation update. No visitor analytics, conversion result, or performance score is claimed. GitHub data can be stale or rate-limited, which is why the interface identifies cached and fallback content.
